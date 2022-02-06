@@ -177,7 +177,7 @@
 <span class="token punctuation">}</span>
 
 
-<span class="token comment">// bearerToken function omited..</span></code></pre></div>
+<span class="token comment">// bearerToken function omitted..</span></code></pre></div>
 <p>Here we extracted the logic to validate the key into a function that, before checking the equality of the user key against the available ones, encodes the user key using the same SHA256 algorithm.</p>
 <p>This simple step improved a lot our security posture without adding much complexity. Now we can have the benefits of version control, like change history and easy detection when someone changes a key hash.</p>
 <p>This approach works well when there are few keys to be managed, and you want to follow a GitOps approach. However, if you need to scale the key management, allow for self-service key requests and automatic rotation, you may want to look for a solution like <a href="https://www.vaultproject.io" target="_blank" rel="nofollow noopener noreferrer">Hashicorp Vault</a>. Even using an external secret store I still believe this strategy, to rely on key hashes to be valid, because your external secret store can persist both the original key and the hash, and the access policy for the application can have fewer privileges in such a way that it can only read the hashes.</p>
